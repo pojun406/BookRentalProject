@@ -1,10 +1,13 @@
 package com.office.library.admin.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/admin/member")
@@ -50,7 +53,7 @@ public class AdminMemberController {
 	}
 	
 	@PostMapping("/loginConfirm")
-	public String loginConfirm(AdminMemberVo adminMemberVo) {
+	public String loginConfirm(AdminMemberVo adminMemberVo, HttpSession session) {
 		System.out.println("[AdminMemberController] loginConfirm()");
 		
 		String nextPage = "admin/member/login_ok";
@@ -59,7 +62,21 @@ public class AdminMemberController {
 		
 		if(loginedAdminMemberVo == null) {
 			nextPage = "admin/member/login_ng";
+		} else {
+			session.setAttribute("loginedAdminMemberVo", loginedAdminMemberVo);
+			session.setMaxInactiveInterval(60 * 30);
 		}
+		
+		return nextPage;
+	}
+	
+	@RequestMapping(value = "/logoutConfirm", method = RequestMethod.GET)
+	public String logoutConfirm(HttpSession session) {
+		System.out.println("[AdminMemberController] loginoutConfirm()");
+		
+		String nextPage = "redirect:/admin";
+		
+		session.invalidate();
 		
 		return nextPage;
 	}
