@@ -1,9 +1,12 @@
 package com.office.library.admin.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,6 +80,19 @@ public class AdminMemberController {
 		String nextPage = "redirect:/admin";
 		
 		session.invalidate();
+		
+		return nextPage;
+	}
+	
+	@RequestMapping(value = "/listupAdmin", method = RequestMethod.GET)
+	public String listupAdmin(Model model) {
+		System.out.println("[AdminMemberController] listupAdmin()");
+		
+		String nextPage = "admin/member/listup_admins";
+		
+		List<AdminMemberVo> adminMemberVos = adminMemberService.listupAdmin();
+		
+		model.addAttribute("adminMemberVos",adminMemberVos);
 		
 		return nextPage;
 	}
