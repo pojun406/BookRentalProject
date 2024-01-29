@@ -52,4 +52,20 @@ public class AdminMemberService {
 		System.out.println("[AdminmemberService] listupAdmin()");
 		return adminMemberDao.selectAdmins();
 	}
+
+	public void setAdminApproval(int a_m_no) {
+		System.out.println("[AdminmemberService] setAdminApproval()");
+		
+		int result = adminMemberDao.updateAdminAccount(a_m_no);
+	}
+
+	public int modifyAccountConfirm(AdminMemberVo adminMemberVo) {
+		System.out.println("[AdminmemberService] modifyAccountConfirm()");
+		return AdminMemberDao.updateAdminAccount(adminMemberVo);
+	}
+
+	public AdminMemberVo getLoginedAdminMemberVo(int a_m_no) {
+		System.out.println("[AdminmemberService] getLoginedAdminMemberVo()");
+		return AdminMemberDao.selectAdmin(a_m_no);
+	}
 }
