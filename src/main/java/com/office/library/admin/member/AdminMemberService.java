@@ -61,11 +61,11 @@ public class AdminMemberService {
 
 	public int modifyAccountConfirm(AdminMemberVo adminMemberVo) {
 		System.out.println("[AdminmemberService] modifyAccountConfirm()");
-		return AdminMemberDao.updateAdminAccount(adminMemberVo);
+		return adminMemberDao.updateAdminAccount(adminMemberVo);
 	}
 
 	public AdminMemberVo getLoginedAdminMemberVo(int a_m_no) {
 		System.out.println("[AdminmemberService] getLoginedAdminMemberVo()");
-		return AdminMemberDao.selectAdmin(a_m_no);
+		return adminMemberDao.selectAdmin(a_m_no);
 	}
 }

@@ -142,4 +142,13 @@ public class AdminMemberController {
 		return nextPage;
 	}
 	
+	@GetMapping("/findPasswordForm")
+	public String findPasswordForm() {
+		System.out.println("[AdminMemberController] findPasswordForm()");
+		
+		String nextPage = "admin/member/find_password_form";
+		
+		return nextPage;
+	}
+	
 }
