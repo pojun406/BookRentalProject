@@ -236,4 +236,14 @@ public class AdminMemberDao {
 		}
 		return adminMemberVos.size() > 0 ? adminMemberVos.get(0) : null;
 	}
+
+	public int updatePassword(String a_m_id, String newPassword) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public AdminMemberVo selectAdmin(String a_m_id, String a_m_name, String a_m_mail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
