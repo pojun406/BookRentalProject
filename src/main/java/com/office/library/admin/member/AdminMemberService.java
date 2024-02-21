@@ -4,7 +4,12 @@ import java.security.SecureRandom;
 import java.util.Date;
 import java.util.List;
 
+import javax.mail.internet.MimeMessage;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -84,14 +89,11 @@ public class AdminMemberService {
 			String newPassword = createNewPassword();
 			result = adminMemberDao.updatePassword(adminMemberVo.getA_m_id(),newPassword);
 			
-			if(result > 0) {
+			if(result > 0) 
 				sendNewPasswordByMail(adminMemberVo.getA_m_mail(), newPassword);
-			}
-			return result;
 		}
+			return result;
 		
-		
-		return adminMemberDao.updateAdminAccount(adminMemberVo);
 	}
 	
 	private String createNewPassword() {
@@ -128,12 +130,11 @@ public class AdminMemberService {
 	private void sendNewPasswordByMail(String toMailAddr, String newPassword) {
 		System.out.println("[AdminMemberService] sendNewPasswordByMail()");
 		
-final mimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator() {
-			
+final MimeMessagePreparator mimeMessagePreparator = new MimeMessagePreparator() {
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				final MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-				mimeMessageHelper.setTo("taehoedu@gamil.com");
+				mimeMessageHelper.setTo("pojun406@gamil.com");
 //				mimeMessageHelper.setTo(toMailAddr);
 				mimeMessageHelper.setSubject("[한국 도서관] 새 비밀번호 안내입니다.");
 				mimeMessageHelper.setText("새 비밀번호 : " + newPassword, true);

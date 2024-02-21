@@ -151,18 +151,19 @@ public class AdminMemberController {
 		return nextPage;
 	}
 	
-	@PostMapping("/findPaddwordConfirm")
+	@PostMapping("/findPasswordConfirm")
 	public String findPasswordConfirm(AdminMemberVo adminMemberVo) {
 		System.out.println("[AdminMemberController] findPasswordConfirm()");
 		
 		String nextPage = "admin/member/find_password_ok";
 		
-		int result = AdminMemberService.findPasswordConfirm(adminMemberVo);
+		int result = adminMemberService.findPasswordConfirm(adminMemberVo);
 		
-		if(result <= 0)
+		if (result <= 0)
 			nextPage = "admin/member/find_password_ng";
 		
 		return nextPage;
+		
 	}
 	
 }
