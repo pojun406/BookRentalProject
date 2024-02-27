@@ -46,8 +46,7 @@ public class BookController {
 				nextPage = "admin/book/register_book_ng";
 			else
 				nextPage = "admin/book/register_book_ng";
-			
-			return nextPage;
 		}
+		return nextPage;
 	}
 }
