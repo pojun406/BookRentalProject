@@ -1,5 +1,7 @@
 package com.office.library.book.admin;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +30,31 @@ public class BookService {
 		} else {
 			return BOOK_ISBN_ALREADY_EXIST;
 		}
+	}
+
+	public List<BookVo> searchBookConfirm(BookVo bookVo) {
+		// TODO Auto-generated method stub
+		return bookdao.selectBooksBySearch(bookVo);
+	}
+
+	public BookVo bookDetail(int b_no) {
+		// TODO Auto-generated method stub
+		return bookdao.selectBook(b_no);
+	}
+
+	public BookVo modifyBookForm(int b_no) {
+		// TODO Auto-generated method stub
+		return bookdao.selectBook(b_no);
+	}
+
+	public int modifyBookConfirm(BookVo bookVo) {
+		// TODO Auto-generated method stub
+		return bookdao.updateBook(bookVo);
+	}
+
+	public int deleteBookConfirm(int b_no) {
+		// TODO Auto-generated method stub
+		return bookdao.deleteBook(b_no);
 	}
 
 }
