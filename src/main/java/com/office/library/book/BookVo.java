@@ -12,6 +12,8 @@ public class BookVo {
 	int b_rental_able;
 	String b_reg_date;
 	String b_mod_date;
+	
+	
 	public int getB_no() {
 		return b_no;
 	}
