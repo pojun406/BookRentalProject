@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.office.library.book.BookVo;
+import com.office.library.book.RentalBookVo;
 
 @Service
 public class BookService {
@@ -55,6 +56,18 @@ public class BookService {
 	public int deleteBookConfirm(int b_no) {
 		// TODO Auto-generated method stub
 		return bookdao.deleteBook(b_no);
+	}
+
+	public List<RentalBookVo> getRentalBooks() {
+		// TODO Auto-generated method stub
+		return bookdao.selectRentalBooks();
+	}
+
+	public int returnBookConfirm(int b_no, int rb_no) {
+		int result = bookdao.updateRentalBook(rb_no);
+		if(result > 0)
+			result = bookdao.updateBook(b_no);
+		return result;
 	}
 
 }

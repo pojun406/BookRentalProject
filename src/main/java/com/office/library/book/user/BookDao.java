@@ -123,9 +123,9 @@ public class BookDao {
 		List<RentalBookVo> rentalBookVos = new ArrayList<RentalBookVo>();
 		
 		try {
-			rentalBookVos = jdbcTemplate.query(sql, new RowMapper<BookVo>() {
+			rentalBookVos = jdbcTemplate.query(sql, new RowMapper<RentalBookVo>() {
 				@Override
-				public BookVo mapRow(ResultSet rs, int rowNum) throws SQLException {
+				public RentalBookVo mapRow(ResultSet rs, int rowNum) throws SQLException {
 					RentalBookVo rentalBookVo = new RentalBookVo();
 					rentalBookVo.setRb_no(rs.getInt("rb_no"));
 					rentalBookVo.setB_no(rs.getInt("b_no"));
@@ -154,6 +154,7 @@ public class BookDao {
 					rentalBookVo.setU_m_reg_date(rs.getString("u_m_reg_date"));
 					rentalBookVo.setU_m_mod_date(rs.getString("u_m_mod_date"));
 					
+					return rentalBookVo;
 				}
 			},u_m_no);
 		}catch(Exception e){
