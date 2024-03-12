@@ -70,4 +70,9 @@ public class BookService {
 		return result;
 	}
 
+	public List<RentalBookVo> listupRentalBookHistory(int u_m_no) {
+		// TODO Auto-generated method stub
+		return bookdao.selectRentalBookHistory(u_m_no);
+	}
+
 }

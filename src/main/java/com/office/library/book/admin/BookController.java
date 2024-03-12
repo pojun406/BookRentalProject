@@ -2,6 +2,8 @@ package com.office.library.book.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.office.library.book.BookVo;
 import com.office.library.book.RentalBookVo;
 import com.office.library.book.admin.util.UploadFileService;
+import com.office.library.user.member.UserMemberVo;
 
 @Controller
 @RequestMapping("/book/admin")
@@ -152,6 +155,21 @@ public class BookController {
 		
 		if(result <= 0)
 			nextPage = "admin/book/return_book_ng";
+		
+		return nextPage;
+	}
+	
+	@GetMapping("/listupRentalBookHistory")
+	public String listupRentalBookHistory(HttpSession session, Model model) {
+		System.out.println("[bookController] listupRentalBookHistory()");
+		
+		String nextPage = "user/book/rental_book_history";
+		
+		UserMemberVo loginedUserMemberVo = (UserMemberVo)session.getAttribute("loginedUserMemberVo");
+		
+		List<RentalBookVo> rentalBookVos = bookService.listupRentalBookHistory(loginedUserMemberVo.getU_m_no());
+		
+		model.addAttribute("rentalBookVos", rentalBookVos);
 		
 		return nextPage;
 	}
